@@ -7,7 +7,8 @@ if (.Platform$OS.type == "windows" && !l10n_info()[["UTF-8"]]) {
 }
 
 required_packages <- c(
-  "data.table", "ggplot2", "AnnotationDbi", "org.Mm.eg.db", "clusterProfiler"
+  "data.table", "ggplot2", "AnnotationDbi", "org.Mm.eg.db", "clusterProfiler",
+  "ragg", "svglite"
 )
 missing_packages <- required_packages[
   !vapply(required_packages, requireNamespace, logical(1), quietly = TRUE)
@@ -152,11 +153,17 @@ save_KEGG_plot <- function(direction) {
   filename_stub <- paste0("06_MET767_", tolower(direction), "_KEGG_enrichment")
   ggsave(
     file.path(figure_directory, paste0(filename_stub, ".png")),
-    plot_object, width = 7.5, height = plot_height, dpi = 300, bg = "white"
+    plot_object, width = 7.5, height = plot_height, dpi = 600,
+    device = ragg::agg_png, bg = "white"
   )
   ggsave(
     file.path(figure_directory, paste0(filename_stub, ".pdf")),
     plot_object, width = 7.5, height = plot_height, device = cairo_pdf
+  )
+  ggsave(
+    file.path(figure_directory, paste0(filename_stub, ".svg")),
+    plot_object, width = 7.5, height = plot_height,
+    device = svglite::svglite, bg = "white"
   )
 }
 

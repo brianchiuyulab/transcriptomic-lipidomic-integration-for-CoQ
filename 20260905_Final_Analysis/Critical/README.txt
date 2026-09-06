@@ -35,3 +35,8 @@ Negative MET767-associated gene KEGG enrichment
 
 06_MET767_KEGG_significant.csv
 BH-FDR < 0.05的KEGG pathways
+
+圖檔格式
+SVG：PowerPoint與期刊排版優先使用，可無損縮放
+PNG：600 dpi，供需要點陣圖的投稿系統使用
+PDF：向量版備份與編輯流程

@@ -1,6 +1,6 @@
 # Transcriptomic and lipidomic key-feature integration
 
-Open `RStudio/OPEN_IN_RSTUDIO.Rproj` and run the numbered scripts in order. `Code availability` contains matching manuscript copies; `Tables` and `Figure` contain final outputs.
+Open `20260905_Final_Analysis/RStudio/OPEN_IN_RSTUDIO.Rproj` and run the numbered scripts in order. `20260905_Final_Analysis/Code availability` contains matching manuscript copies; `20260905_Final_Analysis/Tables` and `20260905_Final_Analysis/Figure` contain final outputs.
 
 This project integrates the 1,498 RNA genes and 60 LC-MS features selected independently in the single-omics analyses.
 
@@ -25,4 +25,4 @@ The complete per-feature record is `Tables/03_lipid_annotation_provenance.csv`.
 5. `05_MET767_follow_up.R` performs the prespecified follow-up after prioritizing MET767 as putative CoQ9. It reports the complete 1,498-gene correlation ranking, selects genes at absolute rho at least 0.90 and BH-FDR below 0.05, and generates the correlation significance plot, ranked correlation plot and expression heatmaps. Coq8a is highlighted only at this targeted stage.
 6. `06_MET767_KEGG_enrichment.R` performs separate KEGG enrichment analyses for positively and negatively associated genes using the 1,498 selected RNA genes as the background.
 
-Complete correlation tables are stored in `Tables`; compact matrices are stored in `Objects`; publication-oriented figures are stored in `Figure`. A raw-feature Circos plot is not generated because 3,899 edges cannot be interpreted reliably.
+Complete correlation tables are stored in `Tables`; compact matrices are stored in `Objects`; publication-oriented figures are stored in `Figure`. Each final figure is supplied as PDF, 600-dpi PNG and SVG. Use SVG for PowerPoint or vector manuscript layout, PNG for raster submission systems, and PDF for archival or editorial workflows. A raw-feature Circos plot is not generated because 3,899 edges cannot be interpreted reliably.

@@ -6,7 +6,7 @@ if (.Platform$OS.type == "windows" && !l10n_info()[["UTF-8"]]) {
   Sys.setlocale("LC_CTYPE", "Chinese (Traditional)_Taiwan.utf8")
 }
 
-required_packages <- c("data.table", "ComplexHeatmap", "circlize")
+required_packages <- c("data.table", "ComplexHeatmap", "circlize", "ragg", "svglite")
 missing_packages <- required_packages[
   !vapply(required_packages, requireNamespace, logical(1), quietly = TRUE)
 ]
@@ -144,12 +144,20 @@ all_heatmap_object <- Heatmap(
     at = c(-1, -0.9, 0, 0.9, 1),
     title_gp = grid::gpar(fontsize = 11, fontface = "bold"),
     labels_gp = grid::gpar(fontsize = 10, fontface = "bold")
-  )
+  ),
+  use_raster = TRUE,
+  raster_quality = 4
 )
 
 pdf(
   file.path(figure_directory, "04_global_integration_heatmap_all_key_features.pdf"),
   width = 16, height = 12, useDingbats = FALSE
+)
+draw(all_heatmap_object, merge_legends = TRUE, heatmap_legend_side = "right")
+dev.off()
+svglite::svglite(
+  file.path(figure_directory, "04_global_integration_heatmap_all_key_features.svg"),
+  width = 16, height = 12, bg = "white"
 )
 draw(all_heatmap_object, merge_legends = TRUE, heatmap_legend_side = "right")
 dev.off()
@@ -225,7 +233,9 @@ annotated_heatmap_object <- Heatmap(
     at = c(-1, -0.9, 0, 0.9, 1),
     title_gp = grid::gpar(fontsize = 13, fontface = "bold"),
     labels_gp = grid::gpar(fontsize = 12, fontface = "bold")
-  )
+  ),
+  use_raster = TRUE,
+  raster_quality = 4
 )
 
 pdf(
@@ -234,21 +244,21 @@ pdf(
 )
 draw(annotated_heatmap_object, merge_legends = TRUE, heatmap_legend_side = "right")
 dev.off()
-svg(
+svglite::svglite(
   file.path(figure_directory, "04_global_integration_heatmap_annotated_lipids_only.svg"),
   width = 16, height = 12, bg = "white"
 )
 draw(annotated_heatmap_object, merge_legends = TRUE, heatmap_legend_side = "right")
 dev.off()
-png(
+ragg::agg_png(
   file.path(figure_directory, "04_global_integration_heatmap_annotated_lipids_only.png"),
-  width = 6400, height = 4800, res = 400, bg = "white"
+  width = 16, height = 12, units = "in", res = 600, background = "white"
 )
 draw(annotated_heatmap_object, merge_legends = TRUE, heatmap_legend_side = "right")
 dev.off()
-png(
+ragg::agg_png(
   file.path(figure_directory, "04_global_integration_heatmap_all_key_features.png"),
-  width = 4800, height = 3600, res = 300, bg = "white"
+  width = 16, height = 12, units = "in", res = 600, background = "white"
 )
 draw(all_heatmap_object, merge_legends = TRUE, heatmap_legend_side = "right")
 dev.off()

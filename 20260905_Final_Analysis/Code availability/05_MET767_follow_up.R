@@ -6,7 +6,9 @@ if (.Platform$OS.type == "windows" && !l10n_info()[["UTF-8"]]) {
   Sys.setlocale("LC_CTYPE", "Chinese (Traditional)_Taiwan.utf8")
 }
 
-required_packages <- c("data.table", "ggplot2", "ComplexHeatmap", "circlize")
+required_packages <- c(
+  "data.table", "ggplot2", "ComplexHeatmap", "circlize", "ragg", "svglite"
+)
 missing_packages <- required_packages[
   !vapply(required_packages, requireNamespace, logical(1), quietly = TRUE)
 ]
@@ -171,15 +173,21 @@ draw_heatmap <- function(heatmap_object) {
   )
 }
 
-png(
+ragg::agg_png(
   file.path(figure_directory, "05_MET767_correlated_gene_set_heatmap.png"),
-  width = 2250, height = 2550, res = 300, bg = "white"
+  width = 7.5, height = 8.5, units = "in", res = 600, background = "white"
 )
 draw_heatmap(overview_heatmap)
 dev.off()
 grDevices::cairo_pdf(
   file.path(figure_directory, "05_MET767_correlated_gene_set_heatmap.pdf"),
   width = 7.5, height = 8.5
+)
+draw_heatmap(overview_heatmap)
+dev.off()
+svglite::svglite(
+  file.path(figure_directory, "05_MET767_correlated_gene_set_heatmap.svg"),
+  width = 7.5, height = 8.5, bg = "white"
 )
 draw_heatmap(overview_heatmap)
 dev.off()
@@ -228,9 +236,16 @@ save_direction_heatmap <- function(direction) {
   plot_height <- max(5.5, 2.5 + 0.115 * gene_count)
   filename_stub <- paste0("05_MET767_", tolower(direction), "_genes_heatmap")
 
-  png(
+  ragg::agg_png(
     file.path(figure_directory, paste0(filename_stub, ".png")),
-    width = 2850, height = round(plot_height * 300), res = 300, bg = "white"
+    width = 9.5, height = plot_height, units = "in", res = 600,
+    background = "white"
+  )
+  draw_heatmap(heatmap_object)
+  dev.off()
+  svglite::svglite(
+    file.path(figure_directory, paste0(filename_stub, ".svg")),
+    width = 9.5, height = plot_height, bg = "white"
   )
   draw_heatmap(heatmap_object)
   dev.off()
@@ -354,11 +369,17 @@ significance_plot <- ggplot(
 
 ggsave(
   file.path(figure_directory, "05_MET767_correlation_significance_plot.png"),
-  significance_plot, width = 8, height = 5.8, dpi = 300, bg = "white"
+  significance_plot, width = 8, height = 5.8, dpi = 600,
+  device = ragg::agg_png, bg = "white"
 )
 ggsave(
   file.path(figure_directory, "05_MET767_correlation_significance_plot.pdf"),
   significance_plot, width = 8, height = 5.8, device = cairo_pdf
+)
+ggsave(
+  file.path(figure_directory, "05_MET767_correlation_significance_plot.svg"),
+  significance_plot, width = 8, height = 5.8, device = svglite::svglite,
+  bg = "white"
 )
 
 ranked_plot <- ggplot(all_ranked_genes, aes(plot_order, spearman_rho)) +
@@ -424,11 +445,17 @@ ranked_plot <- ggplot(all_ranked_genes, aes(plot_order, spearman_rho)) +
 
 ggsave(
   file.path(figure_directory, "05_MET767_all_gene_correlation_rank_plot.png"),
-  ranked_plot, width = 8, height = 5.2, dpi = 300, bg = "white"
+  ranked_plot, width = 8, height = 5.2, dpi = 600,
+  device = ragg::agg_png, bg = "white"
 )
 ggsave(
   file.path(figure_directory, "05_MET767_all_gene_correlation_rank_plot.pdf"),
   ranked_plot, width = 8, height = 5.2, device = cairo_pdf
+)
+ggsave(
+  file.path(figure_directory, "05_MET767_all_gene_correlation_rank_plot.svg"),
+  ranked_plot, width = 8, height = 5.2, device = svglite::svglite,
+  bg = "white"
 )
 
 summary_table <- data.table(
