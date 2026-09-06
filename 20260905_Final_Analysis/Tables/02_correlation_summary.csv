@@ -1,0 +1,17 @@
+﻿metric,value
+RNA_key_genes,1498
+lipid_key_features,60
+matched_conditions,9
+tested_pairs,89880
+correlation_unit,9 passage-by-day condition means
+individual_sample_pairing,FALSE
+p_value_method,two-sided t approximation of Spearman rho; df = 7
+FDR_scope,BH adjustment across all tested key gene-lipid pairs
+rho_cutoff,0.9
+FDR_cutoff,0.05
+high_correlation_pairs,3899
+genes_in_high_correlation_pairs,801
+lipid_features_in_high_correlation_pairs,50
+positive_high_correlation_pairs,3242
+negative_high_correlation_pairs,657
+stable_sign_high_correlation_pairs,3899

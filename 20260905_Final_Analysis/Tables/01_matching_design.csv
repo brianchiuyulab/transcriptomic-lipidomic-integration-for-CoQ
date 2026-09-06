@@ -1,0 +1,10 @@
+﻿condition,passage,day,integration_unit,biological_sample_pairing
+Early_D0,Early Passage,D0,passage-by-day condition mean,FALSE
+Early_D1,Early Passage,D1,passage-by-day condition mean,FALSE
+Early_D6,Early Passage,D6,passage-by-day condition mean,FALSE
+Middle_D0,Middle Passage,D0,passage-by-day condition mean,FALSE
+Middle_D1,Middle Passage,D1,passage-by-day condition mean,FALSE
+Middle_D6,Middle Passage,D6,passage-by-day condition mean,FALSE
+Late_D0,Late Passage,D0,passage-by-day condition mean,FALSE
+Late_D1,Late Passage,D1,passage-by-day condition mean,FALSE
+Late_D6,Late Passage,D6,passage-by-day condition mean,FALSE

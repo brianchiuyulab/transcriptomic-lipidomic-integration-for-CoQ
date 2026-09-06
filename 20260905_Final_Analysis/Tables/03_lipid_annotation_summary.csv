@@ -1,0 +1,16 @@
+﻿annotation_level,lipid_class,N
+Ambiguous LMSD candidates,Phosphatidylcholine candidate,1
+Ambiguous LMSD candidates,Sphingolipid candidate,2
+Ambiguous LMSD candidates,Unassigned,13
+Excluded isotope-labelled LMSD match,Unassigned,1
+Putative LMSD candidate from QI-inferred neutral mass,Ubiquinone,1
+Putative LMSD candidate from m/z-adduct search,Glycerolipid candidate,1
+Putative LMSD candidate from m/z-adduct search,Sphingolipid candidate,1
+Putative LMSD candidate from m/z-adduct search,Unassigned,1
+Putative QI annotation,Free fatty acid,1
+Putative QI annotation,Lysophosphatidylcholine,3
+Putative QI annotation,Phosphatidylcholine,9
+Putative QI annotation,Phosphatidylethanolamine,3
+Putative QI annotation,Phosphatidylglycerol,1
+Putative QI annotation,Sphingomyelin,6
+Unassigned feature,Unassigned,16

@@ -1,0 +1,6 @@
+﻿metric,value
+KEGG_background,1339
+positive_input_genes,179
+negative_input_genes,9
+positive_significant_pathways,4
+negative_significant_pathways,0

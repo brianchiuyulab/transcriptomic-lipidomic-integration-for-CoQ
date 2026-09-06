@@ -1,0 +1,37 @@
+主要結果
+
+04_global_integration_heatmap_annotated_lipids_only
+Global integration：1,498 RNA genes與26個lipid-class assigned features
+
+05_MET767_correlated_gene_set_heatmap
+MET767-associated genes：193 positive與10 negative
+
+05_MET767_positive_genes_heatmap
+Positive genes依Spearman rho排序；Coq8a標紅
+
+05_MET767_negative_genes_heatmap
+Negative genes依Spearman rho排序
+
+05_MET767_correlation_significance_plot
+主圖：全部1,498個RNA genes的相關性與BH-FDR；僅標示Coq8a
+
+05_MET767_all_gene_correlation_rank_plot
+補充圖：1,498個RNA genes依MET767 Spearman rho排序；Coq8a標示其排名與統計值
+
+06_MET767_positive_KEGG_enrichment
+Positive MET767-associated gene KEGG enrichment
+
+06_MET767_negative_KEGG_enrichment
+Negative MET767-associated gene KEGG enrichment
+
+03_lipid_annotations.csv
+60個lipid features的annotation與class
+
+05_MET767_correlated_genes.csv
+203個MET767-associated genes
+
+05_MET767_all_gene_correlations_ranked.csv
+1,498個RNA genes與MET767的完整相關性排名
+
+06_MET767_KEGG_significant.csv
+BH-FDR < 0.05的KEGG pathways

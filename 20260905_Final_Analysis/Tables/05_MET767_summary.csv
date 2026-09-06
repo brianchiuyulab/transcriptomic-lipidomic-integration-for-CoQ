@@ -1,0 +1,8 @@
+﻿metric,value
+tested_genes,1498
+positive_genes,193
+negative_genes,10
+selection_rule,|Spearman rho| >= 0.90; BH-FDR < 0.05
+Coq8a_spearman_rho,0.916666666666667
+Coq8a_BH_FDR,0.0163383285538257
+Coq8a_positive_rank,145

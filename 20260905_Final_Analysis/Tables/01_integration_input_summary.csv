@@ -1,0 +1,12 @@
+﻿metric,value
+integration_scope,independently selected key features only
+integration_unit,passage-by-day condition means; no individual sample pairing
+common_days,"D0, D1, D6"
+matched_conditions,9
+selected_RNA_genes,1498
+variable_RNA_genes,1498
+selected_lipid_features,60
+variable_lipid_features,60
+planned_gene_lipid_pairs,89880
+RNA_scale,log2(DESeq2-normalized count + 1)
+lipid_scale,log2 Progenesis QI normalized abundance after half-minimum imputation
