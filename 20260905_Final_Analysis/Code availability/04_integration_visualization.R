@@ -182,6 +182,9 @@ annotated_column_order <- order(
 annotated_feature_annotation <- annotated_feature_annotation[annotated_column_order]
 annotated_full_matrix <- annotated_full_matrix[, annotated_feature_annotation$met_id, drop = FALSE]
 annotated_display_matrix <- annotated_display_matrix[, annotated_feature_annotation$met_id, drop = FALSE]
+annotated_label_colours <- ifelse(
+  annotated_feature_annotation$met_id == "MET767", "#D7191C", "#1A1A1A"
+)
 
 annotated_heatmap_object <- Heatmap(
   annotated_display_matrix,
@@ -196,13 +199,13 @@ annotated_heatmap_object <- Heatmap(
       `Lipid direction` = direction_colours
     ),
     simple_anno_size = grid::unit(3.5, "mm"),
-    annotation_name_gp = grid::gpar(fontsize = 10, fontface = "bold")
+    annotation_name_gp = grid::gpar(fontsize = 12, fontface = "bold")
   ),
   left_annotation = rowAnnotation(
     `RNA direction` = gene_direction[rownames(annotated_display_matrix)],
     col = list(`RNA direction` = direction_colours),
     simple_anno_size = grid::unit(3.5, "mm"),
-    annotation_name_gp = grid::gpar(fontsize = 10, fontface = "bold")
+    annotation_name_gp = grid::gpar(fontsize = 12, fontface = "bold")
   ),
   cluster_rows = hclust(dist(annotated_full_matrix)),
   cluster_columns = FALSE,
@@ -211,26 +214,35 @@ annotated_heatmap_object <- Heatmap(
   column_labels = annotated_feature_annotation$display_label,
   show_row_names = FALSE,
   show_column_names = TRUE,
-  column_names_gp = grid::gpar(fontsize = 8, fontface = "bold"),
+  column_names_gp = grid::gpar(
+    fontsize = 10, fontface = "bold", col = annotated_label_colours
+  ),
   column_names_rot = 90,
+  column_names_max_height = grid::unit(85, "mm"),
   column_title = "RNA correlations with lipid-class assigned putative features",
-  column_title_gp = grid::gpar(fontsize = 14, fontface = "bold"),
+  column_title_gp = grid::gpar(fontsize = 16, fontface = "bold"),
   heatmap_legend_param = list(
     at = c(-1, -0.9, 0, 0.9, 1),
-    title_gp = grid::gpar(fontsize = 11, fontface = "bold"),
-    labels_gp = grid::gpar(fontsize = 10, fontface = "bold")
+    title_gp = grid::gpar(fontsize = 13, fontface = "bold"),
+    labels_gp = grid::gpar(fontsize = 12, fontface = "bold")
   )
 )
 
 pdf(
   file.path(figure_directory, "04_global_integration_heatmap_annotated_lipids_only.pdf"),
-  width = 12, height = 12, useDingbats = FALSE
+  width = 16, height = 12, useDingbats = FALSE
+)
+draw(annotated_heatmap_object, merge_legends = TRUE, heatmap_legend_side = "right")
+dev.off()
+svg(
+  file.path(figure_directory, "04_global_integration_heatmap_annotated_lipids_only.svg"),
+  width = 16, height = 12, bg = "white"
 )
 draw(annotated_heatmap_object, merge_legends = TRUE, heatmap_legend_side = "right")
 dev.off()
 png(
   file.path(figure_directory, "04_global_integration_heatmap_annotated_lipids_only.png"),
-  width = 3600, height = 3600, res = 300, bg = "white"
+  width = 6400, height = 4800, res = 400, bg = "white"
 )
 draw(annotated_heatmap_object, merge_legends = TRUE, heatmap_legend_side = "right")
 dev.off()
